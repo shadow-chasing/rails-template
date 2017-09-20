@@ -1,0 +1,9 @@
+.header{
+  @include span(12);
+}
+.aside{
+  @include span(4);
+}
+.footer{
+  @include span(12);
+}

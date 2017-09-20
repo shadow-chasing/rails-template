@@ -1,0 +1,7 @@
+<nav>
+  <ul>
+    <li><%= nav_link "sign-in", new_admin_user_session_path %></li>
+    <li><%= nav_link "sign-up", new_admin_user_registration_path %></li>
+    <li><%= nav_link "sign-out", destroy_admin_user_session_path, method: :delete %></li>
+  </ul>
+</nav>

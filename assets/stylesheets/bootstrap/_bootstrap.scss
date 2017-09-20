@@ -1,0 +1,27 @@
+// boxes
+
+.row-2{
+  @include span(6);
+}
+
+.row-3{
+  @include span(4);
+}
+
+.row-4{
+  @include span(3);
+}
+
+// alignment
+
+.center{
+  text-align: center;
+}
+
+.right{
+  text-align: right;
+}
+
+.left{
+  text-align: left;
+}

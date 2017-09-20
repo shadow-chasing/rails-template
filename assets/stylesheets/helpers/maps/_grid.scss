@@ -1,0 +1,15 @@
+$susy: (
+  columns: 12,                     // <number> | <list>
+  gutters: 1/4,                    // ratio
+  math: fluid,                     // fluid | static
+  flow: ltr,                       // rtl | ltr (right to left, left to right)
+  output: float,                   // float | isolate
+  gutter-position: inside,         // before | after | split | inside | inside-static
+  global-box-sizing: border-box,   // border-box | content-box
+  debug: (
+    image: hide,
+    color: rgba(#66f, .25),
+    output: background,
+    toggle: top right,
+  )
+);

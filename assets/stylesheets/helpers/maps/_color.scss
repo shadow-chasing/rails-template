@@ -1,0 +1,40 @@
+// Color Variables
+
+$red: red;
+$blue: blue;
+$green: green;
+$grey: #666;
+
+$palette: (
+  'red': (
+    'base':  $red,
+    'light': lighten($red, 10%),
+    'dark':  darken($red, 10%)
+  ),
+  'blue': (
+    'base':   $blue,
+    'light':  lighten($blue, 10%),
+    'dark':   darken($blue, 10%)
+  ),
+  'green': (
+    'base':   $green,
+    'light':  lighten($green, 10%),
+    'dark':   darken($green, 10%)
+  ),
+  'grey': (
+    'base':   $red,
+    'light':  lighten($red, 10%),
+    'dark':   darken($red, 10%)
+  ),
+  'foreground': (
+    'base':   #191919,
+    'light':  #333333,
+    'dark':   #111111,
+    'darker': #000000
+  ),
+  'background': (
+    'base':   #e9e9e9,
+    'light':  #ffffff,
+    'dark':   #dddddd
+  )
+);
