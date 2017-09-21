@@ -24,6 +24,10 @@ nav > ul > li{
   display: inline;
 }
 
+nav > ul > li.current{
+  border-bottom: 1px solid red;
+}
+
 nav > ul > li > a{
   color:black;
   text-decoration: none;

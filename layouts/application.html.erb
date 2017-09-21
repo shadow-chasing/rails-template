@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Green</title>
+  <title><%= yield(:title) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
   <body>
     <%= render 'layouts/nav' %>
+    <%= render 'layouts/flashmessages' %>
+
     <% unless params[:controller].split("/").first == "admin" %>
       <div class="container">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-
         <%= yield %>
-
       </div>
     <% else %>
       <div class="container-admin">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-
         <%= yield %>
-
       </div>
     <% end %>
 
