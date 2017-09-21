@@ -6,6 +6,7 @@ $susy: (
   output: float,                   // float | isolate
   gutter-position: inside,         // before | after | split | inside | inside-static
   global-box-sizing: border-box,   // border-box | content-box
+  container: 90%,                  // length | auto
   debug: (
     image: hide,
     color: rgba(#66f, .25),

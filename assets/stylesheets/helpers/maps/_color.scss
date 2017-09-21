@@ -5,7 +5,7 @@ $blue: blue;
 $green: green;
 $grey: #666;
 
-$palette: (
+$colors: (
   'red': (
     'base':  $red,
     'light': lighten($red, 10%),
@@ -22,9 +22,9 @@ $palette: (
     'dark':   darken($green, 10%)
   ),
   'grey': (
-    'base':   $red,
-    'light':  lighten($red, 10%),
-    'dark':   darken($red, 10%)
+    'base':   $grey,
+    'light':  lighten($grey, 10%),
+    'dark':   darken($grey, 10%)
   ),
   'foreground': (
     'base':   #191919,

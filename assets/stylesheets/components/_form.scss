@@ -1,29 +1,41 @@
 // Form
 
 input[type="text"], input[type="email"], input[type="password"], textarea {
-		width: 90%;
-		border: 1px solid #d6dce0;
-		border-radius: .35em;
-		margin-top: 10px;
-		padding: .5em 1em;
-		line-height: 1.75;
+	width: 90%;
+	border: 1px solid #d6dce0;
+	border-radius: .35em;
+	margin-top: 10px;
+	padding: .5em 1em;
+	line-height: 1.75;
+}
+
+input[type="text"] {
+	height: 35px;
+	&:focus{
+		outline:none;
 	}
-	input[type="text"] {
-		height: 35px;
+}
+
+textarea {
+	min-height: 180px;
+	background-color: #f7f7f7;
+	&:focus{
+		outline:none;
+		background-color: white;
+		transition:  all .6s ease;
 	}
-	textarea {
-		min-height: 180px;
+}
+
+input[type="submit"] {
+	outline: none;
+	background: transparent;
+	border: 1px solid #d6dce0;
+	padding: .5em 1.5em;
+	font-size: 1.1em;
+	border-radius: .2em;
+	margin-left: .5em;
+	&:hover {
+		border: 1px solid #33acb7;
+		//color: #33acb7;
 	}
-	input[type="submit"] {
-		outline: none;
-		background: transparent;
-		border: 1px solid #d6dce0;
-		padding: .5em 1.5em;
-		font-size: 1.1em;
-		border-radius: 1.5em;
-		margin-left: .5em;
-		&:hover {
-			border: 1px solid #33acb7;
-			//color: #33acb7;
-		}
-	}
+}

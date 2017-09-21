@@ -1,0 +1,13 @@
+@mixin generate-font-properties($label, $base-font-size, $base-line-height, $scale) {
+  $scale-value: index($font-sizes, $label) - 1;
+
+  $fs: $base-font-size * pow($scale, $scale-value);
+  $lh: $base-font-size * $base-line-height / $fs;
+
+  @while $lh < 1 {
+    $lh: $lh + $lh;
+  }
+
+  font-size: $fs;
+  line-height: $lh;
+}

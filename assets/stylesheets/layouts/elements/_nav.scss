@@ -1,0 +1,17 @@
+nav{
+  color: palette(red, base)
+}
+
+nav > ul{
+  list-style: none;
+  display: inline-block;
+}
+
+nav > ul > li{
+  display: inline;
+  padding: 1rem;
+}
+
+nav > ul > li > a{
+
+}

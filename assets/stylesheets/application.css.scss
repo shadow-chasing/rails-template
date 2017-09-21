@@ -1,8 +1,37 @@
-// components
-@import "components/components_manifest";
-// helpers
+// Grid System.
+@import "susy";
+
+// Reset
+@import "reset";
+
+/*
+  Helpers - extends, functions, maps, mixins, variables
+*/
 @import "helpers/helpers_manifest";
-// layouts
-@import "layouts/layout";
-// base
-@import "base_manifest";
+
+/*
+ Components - form, table
+*/
+@import "components/components_manifest";
+
+/*
+  Plugins
+*/
+@import "plugins/vertical_rythm";
+
+/*
+  Bootstrap
+*/
+@import "bootstrap/bootstrap";
+
+/*
+  Layouts - layout
+*/
+@import "layouts/layouts_manifest";
+
+/*
+  typography - fonts, type
+*/
+@import "typography/typography_manifest";
+
+@import "pages";

@@ -4,6 +4,9 @@
 .aside{
   @include span(4);
 }
+.main{
+  @include span(12);
+}
 .footer{
   @include span(12);
 }

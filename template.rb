@@ -5,6 +5,9 @@ def source_paths
     [File.expand_path(File.dirname(__FILE__))]
 end
 
+# ------------------------------------------------------------------------------
+# Gem file
+# ------------------------------------------------------------------------------
 
 # remove old gem file and create new one
 remove_file "Gemfile"
@@ -30,6 +33,12 @@ gem_group :development, :test do
   gem 'awesome_print'
 end
 
+# run 'bundle update'
+
+# ------------------------------------------------------------------------------
+# Readme
+# ------------------------------------------------------------------------------
+
 # remove readme and replace with markdown
 remove_file 'README.rdoc'
 create_file 'README.md' do <<-TEXT
@@ -38,8 +47,17 @@ create_file 'README.md' do <<-TEXT
   TEXT
 end
 
+# ------------------------------------------------------------------------------
+# Gitignore
+# ------------------------------------------------------------------------------
+
+# remove gitignore and replace with template ignore.
 remove_file ".gitignore"
 copy_file ".gitignore"
+
+# ------------------------------------------------------------------------------
+# remove directorys
+# ------------------------------------------------------------------------------
 
 # remove standard assest and layouts
 remove_dir 'app/assets'
@@ -48,8 +66,12 @@ remove_dir 'app/helpers'
 
 # add custom assets and layouts
 link_file "assets", "app/assets"
-link_file "layouts", "app/layouts"
+link_file "layouts", "app/views/layouts"
 link_file "helpers", "app/helpers"
+
+# ------------------------------------------------------------------------------
+# pages
+# ------------------------------------------------------------------------------
 
 # create pages controller
 generate 'controller pages welcome about'
@@ -59,6 +81,10 @@ gsub_file('config/routes.rb', /get\s\"pages\/welcome\"/, " ")
 
 # replace pages/welcome as root
 route "root 'pages#welcome'"
+
+# ------------------------------------------------------------------------------
+# admin - devise
+# ------------------------------------------------------------------------------
 
 # create admin controllers
 generate 'controller admin/dashboard index'
@@ -214,7 +240,13 @@ create_file 'app/controllers/admin/users/registrations_controller.rb' do <<-TEXT
   TEXT
 end
 
+
+
+# ------------------------------------------------------------------------------
+# Git
+# ------------------------------------------------------------------------------
+
 # initialise a git repo add all and commit.
-#git :init
-#git add: "."
-#git commit: "-a -m 'Initial commit'"
+git :init
+git add: "."
+git commit: "-a -m 'Initial commit'"
