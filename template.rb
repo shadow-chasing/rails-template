@@ -64,10 +64,25 @@ remove_dir 'app/assets'
 remove_dir 'app/views/layouts'
 remove_dir 'app/helpers'
 
-# add custom assets and layouts
-link_file "assets", "app/assets"
-link_file "layouts", "app/views/layouts"
-link_file "helpers", "app/helpers"
+# ------------------------------------------------------------------------------
+# copy template directorys to root
+# ------------------------------------------------------------------------------
+directory "assets", "app/assets"
+directory "layouts", "app/views/layouts"
+directory "helpers", "app/helpers"
+
+# ------------------------------------------------------------------------------
+# link custom assets and layouts
+# ------------------------------------------------------------------------------
+#link_file "assets", "app/assets"
+#link_file "layouts", "app/views/layouts"
+#link_file "helpers", "app/helpers"
+
+
+# ------------------------------------------------------------------------------
+# no stylesheets generated
+# ------------------------------------------------------------------------------
+insert_into_file('config/application.rb', "\nconfig.generators do |g|\ng.stylesheets false\nend", :after => /    config.active_record.raise_in_transactional_callbacks = true/)
 
 # ------------------------------------------------------------------------------
 # pages
@@ -118,129 +133,39 @@ gsub_file('config/routes.rb', /devise_for\s\:users$/, "")
 # config/initializers/devise - add authentication_keys for devise login.
 insert_into_file('config/initializers/devise.rb', "\nconfig.authentication_keys = [ :login ]\n", :after => /# config.omniauth_path_prefix = '\/my_engine\/users\/auth'/)
 
-# admin/users - modify devise views adding - username, login
-insert_into_file('app/views/admin/users/registrations/new.html.erb', "\n<p><%= f.label :username %><br />\n<%= f.text_field :username %></p>\n", :after => /<%= devise_error_messages! %>/)
-
 insert_into_file('app/views/admin/users/registrations/edit.html.erb', "\n<p><%= f.label :username %><br />\n<%= f.text_field :username %></p>\n", :after => /<%= devise_error_messages! %>/)
 
-# admin/users sub old email of new login
-gsub_file('app/views/admin/users/sessions/new.html.erb', /:email/, ":login")
-gsub_file('app/views/admin/users/sessions/new.html.erb', /f.email_field/, "f.text_field")
+# ------------------------------------------------------------------------------
+# remove sessions and registrations new
+# ------------------------------------------------------------------------------
+remove_file "app/views/admin/users/registrations"
+remove_file "app/views/admin/users/sessions"
 
+# ------------------------------------------------------------------------------
+# copy sessions and registrations new
+# ------------------------------------------------------------------------------
+directory "devise/registrations", "app/views/admin/users/registrations"
+directory "devise/sessions", "app/views/admin/users/sessions"
 
+# ------------------------------------------------------------------------------
 # recreate devise user models.
+# ------------------------------------------------------------------------------
 remove_file 'app/models/user.rb'
-create_file 'app/models/user.rb' do <<-TEXT
-  class User < ActiveRecord::Base
-      # Include default devise modules. Others available are:
-      # :confirmable, :lockable, :timeoutable and :omniauthable
-      devise :database_authenticatable, :registerable,
-             :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
+copy_file "user.rb", "app/models/user.rb"
 
-      # Virtual attribute for authenticating by either username or email
-      # This is in addition to a real persisted field like 'username'
-      attr_accessor :login
-
-      validate :validate_username
-
-    def self.find_for_database_authentication(warden_conditions)
-      conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions.to_hash).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-      elsif conditions.has_key?(:username) || conditions.has_key?(:email)
-        where(conditions.to_hash).first
-      end
-    end
-
-
-    def validate_username
-      if User.where(email: username).exists?
-        errors.add(:username, :invalid)
-      end
-    end
-
-  end
-
-  TEXT
-end
-
-
+# ------------------------------------------------------------------------------
 # recreate devise registration controller permiting username and redirecting to
 # source page after edit.
+# ------------------------------------------------------------------------------
 remove_file 'app/controllers/admin/users/registrations_controller.rb'
+copy_file "registrations_controller.rb", "app/controllers/admin/users/registrations_controller.rb"
 
-create_file 'app/controllers/admin/users/registrations_controller.rb' do <<-TEXT
-  class Admin::Users::RegistrationsController < Devise::RegistrationsController
-   before_filter :configure_sign_up_params, only: [:create]
-   before_filter :configure_account_update_params, only: [:update]
-
-    # GET /resource/sign_up
-    # def new
-    #   super
-    # end
-
-    # POST /resource
-    # def create
-    #   super
-    # end
-
-    # GET /resource/edit
-    # def edit
-    #   super
-    # end
-
-    # PUT /resource
-    # def update
-    #   super
-    # end
-
-    # DELETE /resource
-    # def destroy
-    #   super
-    # end
-
-    # GET /resource/cancel
-    # Forces the session data which is usually expired after sign
-    # in to be expired now. This is useful if the user wants to
-    # cancel oauth signing in/up in the middle of the process,
-    # removing all OAuth session data.
-    # def cancel
-    #   super
-    # end
-
-    # protected
-
-    # If you have extra params to permit, append them to the sanitizer.
-    def configure_sign_up_params
-      added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
-      devise_parameter_sanitizer.for(:sign_up) << added_attrs
-    end
-
-    # If you have extra params to permit, append them to the sanitizer.
-    def configure_account_update_params
-      added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
-      devise_parameter_sanitizer.for(:account_update) << added_attrs
-    end
-
-    # The path used after sign up.
-    def after_sign_up_path_for(resource)
-       super(resource)
-    end
-
-    def after_update_path_for(resource)
-       user_path(resource)
-    end
-
-    # The path used after sign up for inactive accounts.
-    # def after_inactive_sign_up_path_for(resource)
-    #   super(resource)
-    # end
-  end
-
-  TEXT
-end
-
-
+# ------------------------------------------------------------------------------
+# Admin pannel partials and render aside
+# ------------------------------------------------------------------------------
+remove_file 'app/views/admin/dashboard'
+directory "dashboard", "app/views/admin/dashboard"
+directory "partials", "app/views/admin/partials"
 
 # ------------------------------------------------------------------------------
 # Git

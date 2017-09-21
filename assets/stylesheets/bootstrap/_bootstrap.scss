@@ -38,4 +38,10 @@
 //------------------------------------------------------------------------------
 .container{
   @include container;
+  @include box-sizing(border-box);
+}
+
+.container-admin{
+  @include container($admin);
+  @include box-sizing(border-box);
 }

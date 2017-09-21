@@ -8,12 +8,23 @@
 </head>
   <body>
     <%= render 'layouts/nav' %>
-    <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <% unless params[:controller].split("/").first == "admin" %>
+      <div class="container">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
 
-      <%= yield %>
+        <%= yield %>
 
-    </div>
+      </div>
+    <% else %>
+      <div class="container-admin">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+
+        <%= yield %>
+
+      </div>
+    <% end %>
+
   </body>
 </html>
