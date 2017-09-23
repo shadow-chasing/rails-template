@@ -1,41 +1,76 @@
-// Form
+//------------------------------------------------------------------------------
+// Media Query
+//------------------------------------------------------------------------------
+.field.row-2{
+	@include breakpoint(small){
+		@include span(12);
+	}
+	@include breakpoint(medium){
+		@include span(6);
+	}
+	@include breakpoint(large){
+		@include span(6);
+	}
+}
+
+//------------------------------------------------------------------------------
+// Extend
+//------------------------------------------------------------------------------
+%form-common{
+	border: 1px solid;
+}
+
+//------------------------------------------------------------------------------
+// Form - inputs, textarea and submit
+//------------------------------------------------------------------------------
 
 input[type="text"], input[type="email"], input[type="password"], textarea {
+	@extend %form-common;
 	width: 90%;
-	border: 1px solid #d6dce0;
-	border-radius: .35em;
 	margin-top: 10px;
 	padding: .5em 1em;
 	line-height: 1.75;
+	border-radius: .35em;
+	border-color: components(comp-style, border);
+	&:focus{
+		outline:none;
+	}
 }
 
 input[type="text"] {
 	height: 35px;
-	&:focus{
-		outline:none;
-	}
 }
+//------------------------------------------------------------------------------
+// Textarea
+//------------------------------------------------------------------------------
 
 textarea {
 	min-height: 180px;
-	background-color: #f7f7f7;
+	background-color: components(comp-style, background-shade);
 	&:focus{
 		outline:none;
-		background-color: white;
 		transition:  all .6s ease;
+		background-color: components(comp-style, background);
 	}
 }
 
+//------------------------------------------------------------------------------
+// Submit
+//------------------------------------------------------------------------------
 input[type="submit"] {
+	@extend %form-common;
 	outline: none;
-	background: transparent;
-	border: 1px solid #d6dce0;
-	padding: .5em 1.5em;
 	font-size: 1.1em;
-	border-radius: .2em;
 	margin-left: .5em;
+	padding: .5em 1.5em;
+	border-radius: .2em;
+	background: components(comp-style, background-t);
+	border-color: components(comp-style, border);
 	&:hover {
-		border: 1px solid #33acb7;
+		@extend %form-common;
+		border-color: components(comp-style, border-h);
+		transition:  all .6s ease;
+
 		//color: #33acb7;
 	}
 }

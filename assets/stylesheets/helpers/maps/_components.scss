@@ -1,0 +1,13 @@
+// All colors for components - form, table
+$background-shade: $light-grey;
+
+$components: (
+
+  comp-style: (
+    border:             $lightest-grey,
+    border-h:           $dark-grey,
+    background:         $white-color,
+    background-shade:   $background-shade,
+    background-t:       transparent,
+  ),
+);

@@ -1,40 +1,30 @@
-// Color Variables
-
-$red: red;
-$blue: blue;
-$green: green;
-$grey: #666;
-
-$colors: (
-  'red': (
-    'base':  $red,
-    'light': lighten($red, 10%),
-    'dark':  darken($red, 10%)
+//------------------------------------------------------------------------------
+// Colorscheme
+//------------------------------------------------------------------------------
+$colorscheme: (
+  red-color: (
+    base:      $red,
+    light:     $light-red,
+    dark:      $dark-red,
+    darkest:   $dark-red,
   ),
-  'blue': (
-    'base':   $blue,
-    'light':  lighten($blue, 10%),
-    'dark':   darken($blue, 10%)
+  blue-color: (
+    base:      $blue,
+    light:     $light-blue,
+    dark:      $dark-blue,
+    darkest:   $darkest-blue,
   ),
-  'green': (
-    'base':   $green,
-    'light':  lighten($green, 10%),
-    'dark':   darken($green, 10%)
+  green-color: (
+    base:      $green,
+    light:     $light-green,
+    dark:      $dark-green,
+    darkest:   $darkest-green,
   ),
-  'grey': (
-    'base':   $grey,
-    'light':  lighten($grey, 10%),
-    'dark':   darken($grey, 10%)
+  greyscale-color: (
+    base:      $white-color,
+    lightest:  $lightest-grey,
+    light:     $light-grey,
+    dark:      $dark-grey,
+    darkest:   $darkest-grey,
   ),
-  'foreground': (
-    'base':   #191919,
-    'light':  #333333,
-    'dark':   #111111,
-    'darker': #000000
-  ),
-  'background': (
-    'base':   #e9e9e9,
-    'light':  #ffffff,
-    'dark':   #dddddd
-  )
 );

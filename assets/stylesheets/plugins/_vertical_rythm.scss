@@ -21,13 +21,6 @@ $bp-sizes: (
   )
 );
 
-$breakpoints: (
-  default: '',
-  small: 480px,
-  medium: 720px,
-  large: 960px
-);
-
 $font-sizes: ( p, bq, ssh, sh, h, hero );
 
 // ----
@@ -54,19 +47,6 @@ $font-sizes: ( p, bq, ssh, sh, h, hero );
 }
 
 
-@mixin breakpoint($name) {
-  @if not map-has-key($breakpoints, $name) {
-    @warn "Invalid breakpoint `#{$name}`.";
-  } @else {
-    @if map-get($breakpoints, $name) == '' {
-      @content;
-    } @else {
-      @media (min-width: map-get($breakpoints, $name)) {
-        @content;
-      }
-    }
-  }
-}
 
 @function get-breakpoint-property($prop, $bp) {
   @return map-get(map-get($bp-sizes, $bp), $prop);

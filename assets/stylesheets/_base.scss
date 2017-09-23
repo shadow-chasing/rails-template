@@ -1,0 +1,6 @@
+body{
+  font-family: $primary-font;
+  font-size: 14px;
+  color:color(greyscale-color, darkest);
+  @include linx(color(blue-color));
+}

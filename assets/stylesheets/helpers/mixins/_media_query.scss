@@ -1,0 +1,14 @@
+
+@mixin breakpoint($name) {
+  @if not map-has-key($breakpoints, $name) {
+    @warn "Invalid breakpoint `#{$name}`.";
+  } @else {
+    @if map-get($breakpoints, $name) == '' {
+      @content;
+    } @else {
+      @media screen and (min-width: map-get($breakpoints, $name)) {
+        @content;
+      }
+    }
+  }
+}

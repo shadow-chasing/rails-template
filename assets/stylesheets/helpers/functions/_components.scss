@@ -1,0 +1,10 @@
+// retrieve color from $components map ie. `color(base, primary)`
+@function components($color-name, $color-variant:null) {
+  // color variant is optional
+  @if ($color-variant != null) {
+    // map inception
+    @return map-get(map-get($components, $color-name), $color-variant);
+  } @else {
+    @return map-get($components, $color-name);
+  }
+}

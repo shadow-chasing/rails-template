@@ -1,3 +1,16 @@
 .sign-in-wrapper{
-  padding: 0 20rem;
+  padding: 0 2rem;
+  @include breakpoint(large){
+    padding: 0 20rem;
+  }
+  @include breakpoint(medium){
+    padding: 0 10rem;
+  }
+}
+
+
+// hero
+.hero{
+  height: $hero-height-xl;
+  @extend %flex-center-item;
 }

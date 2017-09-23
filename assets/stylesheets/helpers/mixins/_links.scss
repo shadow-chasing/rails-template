@@ -1,0 +1,19 @@
+@mixin linx ($link) {
+  a {
+    color: $link;
+    list-style: none;
+    text-decoration: none;
+    &:visited {
+      color: scale-saturation($link, 10%);
+    }
+    &:hover {
+      color: darken($link, 20%);
+      transition:  all .6s ease;
+
+    }
+    &:active {
+      color: darken($link, 35%);
+      transition:  all .4s ease;
+    }
+  }
+}

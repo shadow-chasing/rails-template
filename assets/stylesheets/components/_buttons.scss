@@ -1,0 +1,30 @@
+//------------------------------------------------------------------------------
+// buttons
+//------------------------------------------------------------------------------
+// .btn btn--error
+.btn{
+  width: 15%;
+  padding: 1rem;
+  border: .1rem solid;
+  text-align: center;
+  border-radius: .2rem;
+  margin: 1rem;
+    // Generates modifier classes for .button@each $theme, $color in
+    @each $theme, $color in $ui-colors{
+    &--#{$theme} {
+      background-color: $color;
+      border-color: darken($color, 10%);
+      color: transparentize($white-color, .2);
+    }
+    &--#{$theme}:hover,
+    &--#{$theme}:focus {
+      background-color: transparentize($color, .2);
+      color: $white-color;
+      transition:  all .6s ease;
+    }
+    &--#{$theme}:active {
+      background-color: darken($color, 15%);
+    }
+  }
+}
+ 

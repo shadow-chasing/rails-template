@@ -1,3 +1,6 @@
+nav.admin{
+  @include span(10);
+}
 aside.admin{
   @include span(2);
 }

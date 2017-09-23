@@ -1,16 +1,25 @@
+//------------------------------------------------------------------------------
+// Table
+//------------------------------------------------------------------------------
+
 table, td, th {
-    border: 1px solid #ddd;
+    border: 1px solid;
+    border-color: components(comp-style, border);
     text-align: left;
 }
 
 table {
+    @include span(12);
     border-collapse: collapse;
-    width: 100%;
+    background-color: components(comp-style, background)
 }
 
 th, td {
-    padding: 15px;
+    padding: .6rem;
     text-align: left;
+    @include breakpoint(large){
+      padding: 15px;
+    }
 }
 
-tr:nth-child(even) {background-color: #f2f2f2}
+tr:nth-child(even) { background-color: components(comp-style, background-shade)}

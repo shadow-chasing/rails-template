@@ -1,4 +1,17 @@
 //------------------------------------------------------------------------------
+// Container
+//------------------------------------------------------------------------------
+.container{
+  @include container;
+  @include box-sizing(border-box);
+}
+
+.container-admin{
+  @include container($admin);
+  @include box-sizing(border-box);
+}
+
+//------------------------------------------------------------------------------
 // boxes
 //------------------------------------------------------------------------------
 
@@ -31,17 +44,4 @@
 
 .left{
   text-align: left;
-}
-
-//------------------------------------------------------------------------------
-// Container
-//------------------------------------------------------------------------------
-.container{
-  @include container;
-  @include box-sizing(border-box);
-}
-
-.container-admin{
-  @include container($admin);
-  @include box-sizing(border-box);
 }
