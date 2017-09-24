@@ -67,16 +67,16 @@ remove_dir 'app/helpers'
 # ------------------------------------------------------------------------------
 # copy template directorys to root
 # ------------------------------------------------------------------------------
-#directory "assets", "app/assets"
-#directory "layouts", "app/views/layouts"
-#directory "helpers", "app/helpers"
+directory "assets", "app/assets"
+directory "layouts", "app/views/layouts"
+directory "helpers", "app/helpers"
 
 # ------------------------------------------------------------------------------
 # link custom assets and layouts
 # ------------------------------------------------------------------------------
-link_file "assets", "app/assets"
-link_file "layouts", "app/views/layouts"
-link_file "helpers", "app/helpers"
+#link_file "assets", "app/assets"
+#link_file "layouts", "app/views/layouts"
+#link_file "helpers", "app/helpers"
 
 
 # ------------------------------------------------------------------------------
