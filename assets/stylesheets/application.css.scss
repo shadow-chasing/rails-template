@@ -10,12 +10,17 @@
 @import "helpers/helpers_manifest";
 
 /*
- Components - form, table
+  base - base, reset
+*/
+@import "base/base";
+
+/*
+ Components - form, table, buttons
 */
 @import "components/components_manifest";
 
 /*
-  Plugins
+  Plugins - vertical rythem
 */
 @import "plugins/vertical_rythm";
 
@@ -25,17 +30,16 @@
 @import "bootstrap/bootstrap";
 
 /*
-  Layouts - layout
+  Layouts - layout, elements
 */
 @import "layouts/layouts_manifest";
 
 /*
-  typography - fonts, type
+  typography - fonts, type, icons
 */
 @import "typography/typography_manifest";
 
 /*
-  Base
+  pages
 */
-@import "base";
 @import "pages";

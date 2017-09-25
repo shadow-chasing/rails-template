@@ -1,0 +1,7 @@
+body{
+  font-size: 14px;
+  font-family: $primary-font;
+  @include linx(color(blue-color));
+  color:color(greyscale-color, dark);
+  background-color: color(greyscale-color, darkest);
+}

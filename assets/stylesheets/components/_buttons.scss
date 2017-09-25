@@ -27,4 +27,36 @@
     }
   }
 }
- 
+
+//------------------------------------------------------------------------------
+//  Square
+//------------------------------------------------------------------------------
+.link-button > a{
+  padding: 1rem;
+}
+
+.link-button{
+  width: 4rem;
+  text-align: center;
+  border: .1rem solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+    // Generates modifier classes for .button@each $theme, $color in
+    @each $theme, $color in $ui-colors{
+    &--#{$theme} {
+      background-color: $color;
+      border-color: darken($color, 10%);
+      color: transparentize($white-color, .2);
+    }
+    &--#{$theme}:hover,
+    &--#{$theme}:focus {
+      background-color: transparentize($color, .2);
+      color: $white-color;
+      transition:  all .6s ease;
+    }
+    &--#{$theme}:active {
+      background-color: darken($color, 15%);
+    }
+  }
+}
