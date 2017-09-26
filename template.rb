@@ -91,6 +91,7 @@ insert_into_file('config/application.rb', "\nconfig.generators do |g|\ng.stylesh
 # create pages controller
 generate 'controller pages welcome about'
 
+# NOTE this is not working - FIX
 # remove pages/welcome
 gsub_file('config/routes.rb', /get\s\"pages\/welcome\"/, " ")
 

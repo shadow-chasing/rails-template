@@ -3,12 +3,10 @@
 //------------------------------------------------------------------------------
 .container{
   @include container;
-  @include box-sizing(border-box);
 }
 
 .container-admin{
   @include container($admin);
-  @include box-sizing(border-box);
 }
 
 //------------------------------------------------------------------------------
@@ -17,17 +15,14 @@
 
 .row-2{
   @include span(6);
-  @include box-sizing(border-box);
 }
 
 .row-3{
   @include span(4);
-  @include box-sizing(border-box);
 }
 
 .row-4{
   @include span(3);
-  @include box-sizing(border-box);
 }
 
 //------------------------------------------------------------------------------

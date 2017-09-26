@@ -1,7 +1,28 @@
+html {
+  //webkit-font-smoothing: antialiased;
+  //moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 body{
-  font-size: 14px;
-  font-family: $primary-font;
+  font:{
+    font-size: 14px;
+    family: $primary-font;
+  }
   @include linx(color(blue-color));
   color:color(greyscale-color, dark);
   background-color: color(greyscale-color, darkest);
+}
+
+// no underline
+a{
+  text-decoration: none;
+}
+
+// no bullets
+li{
+  list-style: none;
 }
