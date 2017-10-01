@@ -102,8 +102,74 @@ insert_into_file('config/application.rb', "\n\t\tconfig.generators do |g|\n
 # create pages controller
 generate 'controller pages welcome about'
 
-# change welcome to root
-gsub_file 'config/routes.rb', /get \'pages\/welcome\'/, 'root "pages#welcome"'
+# ------------------------------------------------------------------------------
+# admin - devise
+# ------------------------------------------------------------------------------
+# create admin controllers
+generate 'controller admin/dashboard index'
+
+# devise login
+generate 'devise:install'
+generate 'devise User'
+
+# add username to users
+generate 'migration add_username_to_users username:string:uniq'
+# add user image to users
+generate 'migration add_image_to_users image:text'
+
+rake 'db:migrate'
+
+# generate admin/user views
+generate 'devise:views admin/users'
+
+# generate devise controllers
+generate 'devise:controllers admin/users'
+
+
+# config/initializers/devise - add authentication_keys for devise login.
+insert_into_file('config/initializers/devise.rb', "\nconfig.authentication_keys = [ :login ]\n", :after => /# config.omniauth_path_prefix = '\/my_engine\/users\/auth'/)
+
+#insert_into_file('app/views/admin/users/registrations/edit.html.erb', "\n<p><%= f.label :username %><br />\n<%= f.text_field :username %></p>\n", :after => /<%= devise_error_messages! %>/)
+
+# ------------------------------------------------------------------------------
+# remove sessions and registrations new
+# ------------------------------------------------------------------------------
+remove_file "app/views/admin/users/registrations"
+remove_file "app/views/admin/users/sessions"
+
+# ------------------------------------------------------------------------------
+# copy sessions and registrations new
+# ------------------------------------------------------------------------------
+directory "devise/registrations", "app/views/admin/users/registrations"
+directory "devise/sessions", "app/views/admin/users/sessions"
+
+# ------------------------------------------------------------------------------
+# recreate devise user models.
+# ------------------------------------------------------------------------------
+remove_file 'app/models/user.rb'
+copy_file "user.rb", "app/models/user.rb"
+
+# ------------------------------------------------------------------------------
+# recreate devise registration controller permiting username and redirecting to
+# source page after edit.
+# ------------------------------------------------------------------------------
+remove_file 'app/controllers/admin/users/registrations_controller.rb'
+copy_file "registrations_controller.rb", "app/controllers/admin/users/registrations_controller.rb"
+
+# ------------------------------------------------------------------------------
+# Admin pannel partials, render aside and dashboard controller
+# ------------------------------------------------------------------------------
+remove_file 'app/views/admin/dashboard'
+directory "dashboard", "app/views/admin/dashboard"
+directory "partials", "app/views/admin/partials"
+
+remove_file 'app/controllers/admin/dashboard_controller.rb'
+copy_file 'dashboard_controller.rb', 'app/controllers/admin/dashboard_controller.rb'
+# ------------------------------------------------------------------------------
+# copy routes - namespaced admin, devise controllers
+# ------------------------------------------------------------------------------
+remove_file 'config/routes.rb'
+copy_file "routes.rb", "config/routes.rb"
 
 # ------------------------------------------------------------------------------
 # create seed file
@@ -111,7 +177,7 @@ gsub_file 'config/routes.rb', /get \'pages\/welcome\'/, 'root "pages#welcome"'
 remove_file 'db/seeds.rb'
 copy_file "seeds.rb", "db/seeds.rb"
 
-#rake 'db:seed'
+rake 'db:seed'
 
 # ------------------------------------------------------------------------------
 #  Lib
@@ -121,7 +187,6 @@ empty_directory 'lib/templates/rails/helper'
 empty_directory 'lib/templates/erb'
 # move templates
 directory "scaffold", "lib/templates/erb/scaffold"
-directory "initializer", "lib/generators/initializer"
 # ------------------------------------------------------------------------------
 # Git
 # ------------------------------------------------------------------------------

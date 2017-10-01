@@ -2,7 +2,7 @@ nav{
   @include clearfix();
   top:0;
   position: absolute;
-
+  z-index: index($elements, nav);
 }
 
 nav > .logo{

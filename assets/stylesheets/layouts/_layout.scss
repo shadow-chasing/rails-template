@@ -1,18 +1,12 @@
-header{
+nav, header, main, footer{
   @include span(12);
 }
-nav{
-  @include span(12);
+article{
+  @include span(4);
 }
 aside{
   @include span(4);
 }
-main{
-  @include span(12);
-}
 main.small{
   @include span(8);
-}
-footer{
-  @include span(12);
 }

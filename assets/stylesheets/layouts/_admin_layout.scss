@@ -1,9 +1,7 @@
-nav.admin{
-  @include span(10);
-}
-aside.admin{
-  @include span(2);
-}
-main.admin{
+header.admin, main.admin{
   @include span(9);
+}
+
+aside.admin{
+  @include span(3);
 }
