@@ -13,26 +13,33 @@ end
 remove_file "Gemfile"
 run "touch Gemfile"
 add_source 'https://rubygems.org'
-gem 'rails'
+gem 'rails', '~> 5.2.1'
+gem 'puma', '~> 3.11'
 gem 'sqlite3'
+gem 'pry', '~> 0.11.3'
+gem 'pry-byebug', '~> 3.6.0'
 gem 'devise'
-gem 'susy', '2.2.12'
+gem 'susy'
 gem 'will_paginate'
-gem 'uglifier'
-gem 'coffee-rails'
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'devise'
-gem 'sass-rails', '~> 4.0.0'
-gem 'sprockets', '2.11.0'
-gem 'sdoc', group: :doc
+gem 'sc_admin_scaffold', '~> 1.0.0'
+gem 'sc_comment', '~> 1.0.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.2'
+gem 'turbolinks', '~> 5'
+gem 'sass-rails', '~> 5.0'
+gem 'jbuilder', '~> 2.5'
+gem 'bootsnap', '>= 1.1.0', require: false
 gem_group :development, :test do
-  gem 'admin_scaffold'
-  gem 'quiet_assets'
-  gem 'pry-rails'
-  gem 'byebug'
-  gem 'awesome_print'
+    gem 'byebug'
+    gem 'awesome_print'
 end
+gem_group :development do
+    gem 'web-console', '>= 3.3.0'
+    gem 'listen', '>= 3.0.5', '< 3.2'
+    gem 'spring'
+    gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
 
 # run 'bundle update'
 
@@ -105,13 +112,6 @@ generate 'controller pages welcome about'
 # change welcome to root
 gsub_file 'config/routes.rb', /get \'pages\/welcome\'/, 'root "pages#welcome"'
 
-# ------------------------------------------------------------------------------
-# create seed file
-# ------------------------------------------------------------------------------
-remove_file 'db/seeds.rb'
-copy_file "seeds.rb", "db/seeds.rb"
-
-#rake 'db:seed'
 
 # ------------------------------------------------------------------------------
 #  Lib
@@ -129,3 +129,6 @@ directory "initializer", "lib/generators/initializer"
 git :init
 git add: "."
 git commit: "-a -m 'Initial commit'"
+
+# update
+run "bundle update"

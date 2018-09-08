@@ -3,6 +3,9 @@ nav{
   top:0;
   position: absolute;
   z-index: index($elements, nav);
+  background-color:color(elements, nav);
+  border-bottom: 1px solid color(comp, border-dark);
+  box-shadow: .1rem .1rem 1rem .4rem color(comp, shade);
 }
 
 nav > .logo{
@@ -24,7 +27,7 @@ nav > ul > li{
 }
 
 nav > ul > li.current{
-  border-bottom: 1px solid color(red-color);
+  border-bottom: 1px solid color(comp, border-light)
 }
 
 nav > ul > li > a{

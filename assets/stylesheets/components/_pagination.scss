@@ -1,0 +1,31 @@
+.pagination{
+  @include box-sizing(border-box);
+  padding: 1em;
+  border: 1px solid color(greyscale-color, dark);
+  clear: both;
+  text-align: center;
+  box-shadow: inset .1rem .1rem 1rem .1rem color(greyscale-color, blackest);
+
+}
+
+.pagination > a{
+  //text-align: center;
+}
+
+span.previous_page{
+  //text-align: left;
+  margin-left: 1em;
+  float: left;
+}
+
+a.previous_page{
+  //text-align: left;
+  margin-left: 1em;
+  float: left;
+}
+
+a.next_page{
+  //text-align: right;
+  margin-right: 1em;
+  float: right;
+}

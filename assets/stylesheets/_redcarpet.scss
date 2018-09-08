@@ -1,0 +1,10 @@
+//------------------------------------------------------------------------------
+// red carpet
+//------------------------------------------------------------------------------
+code{
+  @include span(12);
+  padding: 1rem;
+  border: 1px solid;
+  background-color: color(greyscale-color, blackest);
+  margin: 2rem 0;
+}

@@ -22,12 +22,21 @@
   @extend %flex-center-item;
 }
 
+.welcome-header {
+  background-image: image-url('/assets/ny.jpg');
+  @extend .hero-commons;
+}
+
+.article-show {
+  background-image: image-url('/assets/hoff.jpg');
+  @extend .hero-commons;
+}
+
 //------------------------------------------------------------------------------
 // pages about
 //------------------------------------------------------------------------------
 
 /* code for gallery show */
-
 
 //------------------------------------------------------------------------------
 // article index
@@ -40,7 +49,6 @@
 //------------------------------------------------------------------------------
 
 /* code for article show */
-
 
 //------------------------------------------------------------------------------
 // gallery index

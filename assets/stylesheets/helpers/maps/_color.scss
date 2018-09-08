@@ -26,5 +26,15 @@ $colorscheme: (
     light:     $light-grey,
     dark:      $dark-grey,
     darkest:   $darkest-grey,
+    blackest:  $black-color,
+  ),
+  comp: (
+    border-light:      $dark-grey,
+    border-dark:       $black-color,
+    shade:             $black-color,
+  ),
+  elements: (
+    pannel:             $black-color,
+    nav:                #1c1c1c,
   ),
 );
