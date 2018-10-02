@@ -31,7 +31,11 @@
   background-image: image-url('/assets/hoff.jpg');
   @extend .hero-commons;
 }
-
+.box {
+  @include vertical-rhythm(5.2rem, $use-height: true);
+  background-color: blue;
+  width: 200px;
+}
 //------------------------------------------------------------------------------
 // pages about
 //------------------------------------------------------------------------------

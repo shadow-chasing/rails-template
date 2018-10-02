@@ -9,12 +9,20 @@ html {
 
 body{
   font:{
-    font-size: 14px;
+    font-size: $base-font-size;
     family: $primary-font;
   }
+  line-height:  $line-height-ratio;
   @include linx(color(blue-color));
   color:color(greyscale-color, dark);
-  background-color: color(greyscale-color, darkest);
+  background-color: color(greyscale-color, base);
+}
+
+* {
+  margin-top:     0;
+  margin-bottom:  0;
+  padding-top:    0;
+  padding-bottom: 0;
 }
 
 // no underline

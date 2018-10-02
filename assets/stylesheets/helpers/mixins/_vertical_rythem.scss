@@ -1,0 +1,27 @@
+// ----
+// libsass (v3.1.0-beta)
+// ----
+
+$base-font-size:    16px;
+$line-height-ratio: 1.5;
+$line-height-base:  1rem * $line-height-ratio;
+
+// restrict font-size to rems so everything scales well
+@mixin vertical-rhythm($font-size, $bottom-rows: 1, $top-rows: 0, $use-height: false, $border: 0rem) {
+  $multiplier: ceil($font-size / $line-height-base);
+
+  // check if height-based element
+  // if so use height property for height, otherwise use line-height property
+  @if $use-height {
+    $leftover:      $line-height-base * $multiplier - $font-size;
+    height:         $font-size;
+    margin-top:     $line-height-base * $top-rows + $leftover / 2;
+    margin-bottom:  $line-height-base * $bottom-rows + $leftover / 2;
+  }
+  @else { // text based element (uses line-height)
+    font-size:      $font-size;
+    line-height:    $line-height-base * $multiplier;
+    margin-top:     $line-height-base * $top-rows;
+    margin-bottom:  $line-height-base * $bottom-rows - $border;
+  }
+}

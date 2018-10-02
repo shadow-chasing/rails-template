@@ -1,31 +1,68 @@
+//------------------------------------------------------------------------------
+// shared style extends
+//------------------------------------------------------------------------------
+%shared_button_style{
+  background-color: color(red-color);
+  border:.1rem solid color(red-color, dark);
+  padding:1rem;
+  border-radius: .2rem;
+  color: color(greyscale-color);
+}
+
+%a_style{
+  &:hover, &:focus {
+      background-color: transparentize(color(red-color), .2);
+      color: color(greyscale-color);
+      transition:  all .6s ease;
+    }
+}
+//------------------------------------------------------------------------------
+// left extends
+//------------------------------------------------------------------------------
+%pagination_left{
+  margin-left: 1em;
+  float: left;
+  @extend %shared_button_style;
+}
+//------------------------------------------------------------------------------
+//right extends
+//------------------------------------------------------------------------------
+%pagination_right{
+  margin-right: 1em;
+  float: right;
+  @extend %shared_button_style;
+}
+
+
+//------------------------------------------------------------------------------
+// Main wrapper
+//------------------------------------------------------------------------------
 .pagination{
   @include box-sizing(border-box);
   padding: 1em;
-  border: 1px solid color(greyscale-color, dark);
   clear: both;
   text-align: center;
-  box-shadow: inset .1rem .1rem 1rem .1rem color(greyscale-color, blackest);
-
 }
 
-.pagination > a{
-  //text-align: center;
-}
-
+//------------------------------------------------------------------------------
+// Links
+//------------------------------------------------------------------------------
 span.previous_page{
-  //text-align: left;
-  margin-left: 1em;
-  float: left;
+  @extend %pagination_left;
+  @extend %a_style;
 }
 
 a.previous_page{
-  //text-align: left;
-  margin-left: 1em;
-  float: left;
+  @extend %pagination_left;
+  @extend %a_style;
 }
 
 a.next_page{
-  //text-align: right;
-  margin-right: 1em;
-  float: right;
+  @extend %pagination_right;
+  @extend %a_style;
+}
+
+span.next_page{
+  @extend %pagination_right;
+  @extend %a_style;
 }

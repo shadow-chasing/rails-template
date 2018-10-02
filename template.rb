@@ -17,9 +17,10 @@ gem 'rails', '~> 5.2.1'
 gem 'puma', '~> 3.11'
 gem 'sqlite3'
 gem 'pry', '~> 0.11.3'
-gem 'pry-byebug', '~> 3.6.0'
+gem 'pry-rails', '~> 0.3.4'
 gem 'devise'
 gem 'susy'
+gem 'redcarpet', '~> 3.4.0'
 gem 'will_paginate'
 gem 'sc_admin_scaffold', '~> 1.0.0'
 gem 'sc_comment', '~> 1.0.0'
@@ -30,8 +31,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem_group :development, :test do
-    gem 'byebug'
-    gem 'awesome_print'
+  gem 'pry-byebug', '~> 3.6.0'
+  gem 'byebug'
+  gem 'awesome_print'
+  gem 'better_errors', '~> 2.5'
+  gem 'binding_of_caller', '~> 0.8.0'
 end
 gem_group :development do
     gem 'web-console', '>= 3.3.0'
@@ -112,7 +116,11 @@ generate 'controller pages welcome about'
 # change welcome to root
 gsub_file 'config/routes.rb', /get \'pages\/welcome\'/, 'root "pages#welcome"'
 
+# ------------------------------------------------------------------------------
+# pry
+# ------------------------------------------------------------------------------
 
+insert_into_file "config/environments/development.rb", "\tconfig.console = Pry\n", :after => "config.file_watcher = ActiveSupport::EventedFileUpdateChecker\n"
 # ------------------------------------------------------------------------------
 #  Lib
 # ------------------------------------------------------------------------------

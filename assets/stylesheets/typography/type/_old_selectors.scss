@@ -1,0 +1,18 @@
+.hero {
+  @extend %hero;
+}
+h1 {
+  @extend %h;
+}
+h2 {
+  @extend %sh;
+}
+h3 {
+  @extend %ssh;
+}
+blockquote {
+  @extend %bq;
+}
+p {
+  @extend %p;
+}

@@ -1,18 +1,21 @@
 .hero {
-  @extend %hero;
+  @include vertical-rhythm(4rem);
 }
 h1 {
-  @extend %h;
+  @include vertical-rhythm(4rem);
 }
 h2 {
-  @extend %sh;
+  @include vertical-rhythm(3.4rem);
 }
 h3 {
-  @extend %ssh;
+  @include vertical-rhythm(2.5rem);
+}
+h4 {
+  @include vertical-rhythm(2rem);
 }
 blockquote {
-  @extend %bq;
+  @include vertical-rhythm(3rem);
 }
 p {
-  @extend %p;
+  @include vertical-rhythm(1.6rem);
 }
