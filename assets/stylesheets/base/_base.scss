@@ -9,10 +9,11 @@ html {
 
 body{
   font:{
-    font-size: $base-font-size;
+    //font-size: $base-font-size;
     family: $primary-font;
   }
-  line-height:  $line-height-ratio;
+  //line-height:  $line-height-ratio;
+  margin:0;
   @include linx(color(blue-color));
   color:color(greyscale-color, dark);
   background-color: color(greyscale-color, base);
