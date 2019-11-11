@@ -1,0 +1,12 @@
+<nav>
+  <div class="logo span-4">
+  </div>
+
+  <ul class="nav span-8">
+    <% Category.all.each do |category| %>
+      <li>
+        <%= nav_link category.name, articles_path(category: category.id) %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

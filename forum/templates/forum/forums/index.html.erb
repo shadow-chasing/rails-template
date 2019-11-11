@@ -1,0 +1,48 @@
+<header class="forum-index-header">
+  <h1>Listing Forums</h1>
+</header>
+
+<br>
+
+<!-- Link -->
+<div class="link-button link-button--info">
+  <%= link_to 'New Forum', new_forum_path %>
+</div>
+<%= will_paginate @forums %>
+<br>
+
+<!-- Table -->
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last Updated</th>
+      <th>Views</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forums.each do |forum| %>
+      <tr>
+        <td>
+          <h4><%= link_to forum.name, topics_path(forum_id: forum.id) %></h4>
+          <span>topics </span><%= forum.topics.count %>
+          <p><%= truncate(forum.description, length: 50) %></p>
+        </td>
+          <% if forum.topics.present? %>
+          <td>
+            <%= distance_of_time_in_words_to_now forum.topics.order(last_post_at: "DESC").first.last_post_at %> ago <br>
+            by: <%= forum.topics.order(last_post_at: "DESC").first.user.username %>
+          </td>
+          <% else %>
+          <td>
+            no topics
+          </td>
+          <% end %>
+          <td><%= forum.pagecount %></td>
+        <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
+        <td><%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

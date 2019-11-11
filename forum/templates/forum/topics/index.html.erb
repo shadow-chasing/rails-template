@@ -1,0 +1,42 @@
+<header class="topic-index-header">
+  <h1>Listing Topics <% if !@forum.nil? %>for <%= @forum.name %> <% end %></h1>
+</header>
+
+<br>
+<!-- Link Button -->
+<div class="link-button link-button--info">
+  <%= link_to 'New Topic', new_topic_path %>
+</div>
+
+<br>
+
+<!-- Table -->
+<table>
+  <tr>
+    <th>Topic Title</th>
+    <th>Replies</th>
+    <th>Last Post</th>
+    <th>Views</th>
+    <th>Delete</th>
+  </tr>
+  <% @topics.each do |topic| %>
+    <tr>
+      <td>
+        <%= link_to topic.name, topic_path(topic) %><br>
+        created by: <%= topic.user.username %>
+      </td>
+      <td><%= topic.comments.count %></td>
+      <td>
+        <%= distance_of_time_in_words_to_now topic.last_post_at %> ago<br>
+        by: <%= topic.last_poster_username %>
+      </td>
+      <td><%= topic.pagecount %></td>
+      <td><%= link_to "Destroy", topic, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% if @forum.present? %>
+  <%= link_to 'Create New Topic', new_topic_path(forum_id: @forum.id) %> |
+<% end %>
+<%= link_to 'Back', forums_path %>

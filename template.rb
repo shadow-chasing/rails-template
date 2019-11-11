@@ -20,36 +20,36 @@ def create_gemfile
   begin
     run "touch Gemfile"
     add_source 'https://rubygems.org'
+
     gem 'rails', '~> 5.2.1'
-    gem 'puma', '~> 3.11'
+    gem 'puma', '~> 4.1'
     gem 'sqlite3'
-    gem 'pry', '~> 0.11.3'
-    gem 'pry-rails', '~> 0.3.4'
-    gem 'devise'
-    gem 'susy'
-    gem 'redcarpet', '~> 3.4.0'
-    gem 'will_paginate'
-    gem 'sc_admin_scaffold', '~> 1.0.0'
-    gem 'sc_comment', '~> 1.0.0'
+    gem 'pry', '~> 0.12.2'
+    gem 'pry-rails', '~> 0.3.9'
+    gem 'susy', '~> 2.2', '>= 2.2.14'
+    gem 'redcarpet', '~> 3.5'
+    gem 'will_paginate', '~> 3.1', '>= 3.1.8'
     gem 'uglifier', '>= 1.3.0'
-    gem 'coffee-rails', '~> 4.2'
+    gem 'coffee-rails', '~> 5.0'
     gem 'turbolinks', '~> 5'
-    gem 'sass-rails', '~> 5.0'
-    gem 'jquery-rails'
+    gem 'sass-rails', '~> 6.0'
+    gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
     gem 'jbuilder', '~> 2.5'
+    gem 'json', '~> 2.1.0'
     gem 'bootsnap', '>= 1.1.0', require: false
     gem_group :development, :test do
-      gem 'pry-byebug', '~> 3.6.0'
-      gem 'byebug'
-      gem 'awesome_print'
-      gem 'better_errors', '~> 2.5'
-      gem 'binding_of_caller', '~> 0.8.0'
+    gem 'pry-byebug', '~> 3.7'
+    gem 'byebug'
+    gem 'awesome_print', '~> 1.8'
+    gem 'better_errors', '~> 2.5', '>= 2.5.1'
+    gem 'binding_of_caller', '~> 0.8.0'
     end
+
     gem_group :development do
-        gem 'web-console', '>= 3.3.0'
-        gem 'listen', '>= 3.0.5', '< 3.2'
-        gem 'spring'
-        gem 'spring-watcher-listen', '~> 2.0.0'
+    gem 'web-console', '~> 3.7'
+    gem 'listen', '>= 3.0.5', '< 3.2'
+    gem 'spring'
+    gem 'spring-watcher-listen', '~> 2.0.0'
     end
   rescue
     puts "Error: Uanle to create gemfile"
@@ -65,11 +65,11 @@ def create_readme
   begin
     # remove readme and replace with markdown
     remove_file 'README.rdoc'
-    create_file 'README.md' do <<-TEXT
+    #create_file 'README.md' do <<-TEXT
       #My Porject!
-      Created with the help of Rails application templates
-      TEXT
-    end
+      #Created with the help of Rails application templates
+      #TEXT
+    #end
   rescue
     puts "Error: Uable to create readme"
   end
@@ -149,6 +149,12 @@ def no_generate_style_sheets
 end
 
 no_generate_style_sheets
+
+def no_generate_test
+  insert_into_file('config/application.rb', "\tconfig.generators.test_framework false", :after => "config.load_defaults 5.2\n")
+end
+
+no_generate_test
 # ------------------------------------------------------------------------------
 # pages
 # ------------------------------------------------------------------------------
@@ -161,7 +167,6 @@ no_generate_style_sheets
 # ------------------------------------------------------------------------------
 # pry
 # ------------------------------------------------------------------------------
-
 def pry_setup
   begin
     insert_into_file "config/environments/development.rb", "\tconfig.console = Pry\n", :after => "config.file_watcher = ActiveSupport::EventedFileUpdateChecker\n"
@@ -178,6 +183,14 @@ def add_images_to_assets_path
 end
 
 add_images_to_assets_path
+
+# add scripts dir to the load path
+def add_scripts_to_path
+  # the framework and any gems in your application.
+    insert_into_file "config/application.rb", "\tconfig.autoload_paths << Rails.root.join('scripts').to_s\n", :after => "config.assets.paths << Rails.root.join('app/assets/images')\n"
+end
+
+add_scripts_to_path
 # ------------------------------------------------------------------------------
 #  Lib
 # ------------------------------------------------------------------------------
@@ -188,20 +201,15 @@ def create_libriary_gens
     empty_directory 'lib/templates/erb'
     # move templates
     directory "scaffold", "lib/templates/erb/scaffold"
-    directory "initializer", "lib/generators/initializer"
+    directory "generators/initializer", "lib/generators/initializer"
+    directory "generators/admin_devise", "lib/generators/admin_devise"
+    directory "generators/category", "lib/generators/category"
+    directory "generators/imageable", "lib/generators/imageable"
   rescue
     puts "Error: Unable to create libriary."
   end
 end
 
 create_libriary_gens
-# ------------------------------------------------------------------------------
-# Git
-# ------------------------------------------------------------------------------
-# initialise a git repo add all and commit.
-git :init
-git add: "."
-git commit: "-a -m 'Initial commit'"
-
 # update
-run "bundle update"
+#run "bundle update"

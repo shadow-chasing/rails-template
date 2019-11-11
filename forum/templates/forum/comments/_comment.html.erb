@@ -1,0 +1,29 @@
+<!-- Begin Topic Show comments-->
+<% if comment.content.present? %>
+  <div class="comment span-12">
+    <div class="comment-info span-2">
+      <strong>Username: </strong><%= comment.user.username %><br>
+      <strong>joined: </strong><%= comment.user.created_at.strftime("%A, %b %d") %><br>
+      <strong>id: </strong><%= comment.id %>
+      <br>
+      <!--Begin Like Buttons-->
+      <div class="like-dislike">
+        <%= comment.get_likes.size %>
+        <%= link_to 'like', like_comment_path(comment), method: :put %>
+        <%= comment.get_dislikes.size %>
+        <%= link_to 'dislike', dislike_comment_path(comment), method: :put %>
+      </div>
+      <br>
+      <div class="edit-delete">
+        <%= link_to 'edit', edit_comment_path(comment) %> |
+        <%= link_to 'delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %> |
+      </div>
+    </div>
+
+    <!--Begin Content-->
+    <div class="comment_content span-10">
+      <%= markdown(comment.content) %>
+      <br>
+    </div>
+  </div>
+<% end %>

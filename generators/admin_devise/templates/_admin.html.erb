@@ -1,0 +1,8 @@
+<!--Start Admin -->
+    <li><%= nav_link "admin", admin_path %></li>
+    <% if admin_user_signed_in? %>
+      <li><%= link_to "sign-out", destroy_admin_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= nav_link "sign-in", new_admin_user_session_path %></li>
+      <li><%= nav_link "sign-up", new_admin_user_registration_path %></li>
+    <% end %>

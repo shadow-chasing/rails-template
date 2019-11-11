@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+Forum Config
+--------------------------------------------------------------------------------
+make sure gem 'acts_as_votable', '~> 0.11.1' is in the gem file
+
+
+Add this code block to config/routes
+--------------------------------------------------------------------------------
+
+  scope module: 'forum' do
+    resources :forums, except: [:show]
+    resources :topics
+
+    # User Resources
+    resources :comments do
+      member do
+        put "like",    to: "comments#upvote"
+        put "dislike", to: "comments#downvote"
+      end
+    end
+  end

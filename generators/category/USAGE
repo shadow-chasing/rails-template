@@ -1,0 +1,22 @@
+Description:
+  "creates a one shot articles and category"
+Example:
+    rails g category
+
+Files created
+  category
+    app/models/category.rb
+
+  full article scaffold
+    app/views/
+      index
+      show
+      new
+      edit
+      _form
+
+    controller
+      articles_controller.rb
+
+    model
+      article.rb

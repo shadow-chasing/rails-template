@@ -13,7 +13,7 @@ end
 remove_file "Gemfile"
 run "touch Gemfile"
 add_source 'https://rubygems.org'
-gem 'rails'
+gem 'rails', '~> 5.2', '>= 5.2.3'
 gem 'sqlite3'
 gem 'devise'
 gem 'susy', '2.2.12'

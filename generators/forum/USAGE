@@ -1,0 +1,21 @@
+Description:
+    This will generate views, models and controller actions for forum.
+
+Example:
+    rails generate forum
+
+    This will create:
+      # views
+      views/forum/forums
+      views/forum/topics
+      views/forum/comments
+
+      # controllers
+      controller/forum/forums_controller.rb
+      controller/forum/topics_controller.rb
+      controller/forum/comments_controller.rb
+
+      # models
+      model/forum.rb
+      model/topic.rb
+      model/comment.rb

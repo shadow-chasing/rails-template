@@ -1,0 +1,67 @@
+--------------------------------------------------------------------------------
+Forum Config
+--------------------------------------------------------------------------------
+dependencies,
+gem 'acts_as_votable', '~> 0.11.1' is in the gem file
+gem 'devise'
+
+Before raking, add this to the forum and topic migration files.
+t.integer :pagecount, default: 0
+
+
+#-------------------------------------------------------------------------------
+devise
+#-------------------------------------------------------------------------------
+
+If you don't already have devise installed run all the steps in the devise setup.
+if on the other hand you do already have devise installed, just create a migration,
+rails g migration AddCounterToUser
+
+and paste in the ##counters 3 lines in to the migration created.
+
+# devise set up
+rails g devise:install
+rails generate devise User
+rails generate devise:controllers users
+rails generate devise:views users
+
+uncomment trackable and add these lines underneath.
+
+## Counters
+t.integer :forums_count, default: 0
+t.integer :topics_count, default: 0
+t.integer :comments_count, default: 0
+
+
+#-------------------------------------------------------------------------------
+# acts_as_votable
+#-------------------------------------------------------------------------------
+rails generate acts_as_votable:migration
+
+
+Add this code block to config/routes
+--------------------------------------------------------------------------------
+Forum config/routes.rb
+--------------------------------------------------------------------------------
+
+  scope module: 'forum' do
+    resources :forums, except: [:show]
+    resources :topics
+
+    # User Resources
+    resources :comments do
+      member do
+        put "like",    to: "comments#upvote"
+        put "dislike", to: "comments#downvote"
+      end
+    end
+  end
+
+--------------------------------------------------------------------------------
+Devise config/routes.rb
+--------------------------------------------------------------------------------
+# Devise Authentication
+devise_for :users, controllers: {
+  sessions: 'users/sessions',
+  registrations: 'users/registrations'
+}

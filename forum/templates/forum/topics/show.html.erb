@@ -1,0 +1,21 @@
+<h1 class="center"><%= @topic.name %></h1>
+
+<!-- Begin Header Info-->
+<h4>General <%= @topic.name %> Thread</h4>
+  created by <%= @topic.user.username %>
+  on <%= @topic.created_at.strftime("%A, %b %d") %>
+
+<!-- Begin Articles-->
+<%= render @topic.comments %>
+
+<!-- Begin Form-->
+<% if user_signed_in? %>
+  <h3>Add A Comment</h3>
+  <%= render partial: 'forum/comments/form' %>
+<% else %>
+  <h4>sign in to comment</h4>
+<% end %>
+<br>
+
+<!-- Link -->
+<%= link_to 'Back', topics_path(forum_id: @topic.forum_id) %>

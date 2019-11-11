@@ -1,0 +1,9 @@
+Description:
+    generates a pictures model and concern
+
+Example:
+    rails g imageable
+
+    This will create:
+        app/models/concerns/imageable.rb
+        app/models/pictures.rb
